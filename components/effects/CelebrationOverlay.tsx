@@ -9,11 +9,7 @@ import {
   CELEBRATION_GIF,
   CONFIG,
 } from "@/lib/constants";
-import {
-  celebrationVariants,
-  staggerContainerVariants,
-  staggerItemVariants,
-} from "@/lib/animations";
+import { celebrationVariants } from "@/lib/animations";
 import PhotoCarousel from "@/components/photos/PhotoCarousel";
 import FloatingPhotos from "@/components/photos/FloatingPhotos";
 import TypingAnimation from "./TypingAnimation";
@@ -89,12 +85,7 @@ export default function CelebrationOverlay({
       <FloatingPhotos />
 
       <div className="min-h-full flex items-center justify-center py-8 px-3 sm:px-4">
-        <motion.div
-          className="max-w-2xl w-full text-center relative z-10"
-          variants={staggerContainerVariants}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="max-w-2xl w-full text-center relative z-10">
           <AnimatePresence mode="wait">
             {currentView === "celebration" && (
               <motion.div
@@ -106,7 +97,6 @@ export default function CelebrationOverlay({
               >
               <motion.div
                 className="mb-4 sm:mb-6 flex justify-center"
-                variants={staggerItemVariants}
                 animate={{
                   scale: [1, 1.15, 1],
                   rotate: [0, 5, -5, 0],
@@ -124,25 +114,20 @@ export default function CelebrationOverlay({
                 />
               </motion.div>
 
-              <motion.h1
+              <h1
                 className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-3 sm:mb-4 px-2"
                 style={{ textShadow: "0 2px 20px rgba(0,0,0,0.2)" }}
-                variants={staggerItemVariants}
               >
                 {celebrationMessage.title}
-              </motion.h1>
+              </h1>
 
-              <motion.p
+              <p
                 className="font-handwritten text-2xl sm:text-3xl md:text-4xl text-white/90 mb-4 sm:mb-6"
-                variants={staggerItemVariants}
               >
                 {celebrationMessage.subtitle}
-              </motion.p>
+              </p>
 
-              <motion.div
-                className="mb-6 sm:mb-8"
-                variants={staggerItemVariants}
-              >
+              <div className="mb-6 sm:mb-8">
                 <div
                   className="inline-block rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-4 border-white/20"
                   style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}
@@ -153,21 +138,17 @@ export default function CelebrationOverlay({
                     className="w-36 h-36 sm:w-48 sm:h-48 object-cover"
                   />
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.button
-                variants={staggerItemVariants}
+              <button
                 onClick={() => goToView("letter")}
                 className="px-8 py-4 bg-white text-[#dc143c] font-body font-semibold text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 mx-auto"
               >
                 Read my letter to you
                 <HeartIcon size={20} className="text-[#dc143c]" />
-              </motion.button>
+              </button>
 
-              <motion.div
-                className="flex justify-center items-center gap-3 sm:gap-5 mt-6 sm:mt-8"
-                variants={staggerItemVariants}
-              >
+              <div className="flex justify-center items-center gap-3 sm:gap-5 mt-6 sm:mt-8">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <motion.div
                     key={i}
@@ -191,7 +172,7 @@ export default function CelebrationOverlay({
                     )}
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
               </motion.div>
             )}
 
@@ -202,10 +183,6 @@ export default function CelebrationOverlay({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-              >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
                 className="bg-white rounded-2xl p-6 sm:p-8 max-h-[80vh] overflow-y-auto celebration-scroll"
                 style={{
                   boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
@@ -272,7 +249,6 @@ export default function CelebrationOverlay({
                   </motion.div>
                 )}
               </motion.div>
-              </motion.div>
             )}
 
             {currentView === "todo" && (
@@ -284,105 +260,85 @@ export default function CelebrationOverlay({
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center"
               >
-              <ValentineTodo />
+                <ValentineTodo />
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex flex-col items-center mt-6 gap-3"
-              >
-                <button
-                  onClick={() => goToView("finale")}
-                  className="px-8 py-3 bg-white text-[#dc143c] font-body font-semibold rounded-full hover:bg-white/90 transition-colors flex items-center gap-2"
-                >
-                  <HeartIcon size={18} className="text-[#dc143c]" />
-                  Continue
-                </button>
-                <button
-                  onClick={() => goToView("letter")}
-                  className="px-4 py-2 bg-white/20 text-white font-body font-medium rounded-full hover:bg-white/30 transition-colors text-sm"
-                >
-                  Re-read letter
-                </button>
-              </motion.div>
+                <div className="flex flex-col items-center mt-6 gap-3">
+                  <button
+                    onClick={() => goToView("finale")}
+                    className="px-8 py-3 bg-white text-[#dc143c] font-body font-semibold rounded-full hover:bg-white/90 transition-colors flex items-center gap-2"
+                  >
+                    <HeartIcon size={18} className="text-[#dc143c]" />
+                    Continue
+                  </button>
+                  <button
+                    onClick={() => goToView("letter")}
+                    className="px-4 py-2 bg-white/20 text-white font-body font-medium rounded-full hover:bg-white/30 transition-colors text-sm"
+                  >
+                    Re-read letter
+                  </button>
+                </div>
               </motion.div>
             )}
 
             {currentView === "finale" && (
               <motion.div
                 key="finale"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center text-center px-4"
               >
-              <motion.div
-                animate={{
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="mb-6"
-              >
-                <DoubleHeart size={80} className="text-white sm:hidden" />
-                <DoubleHeart size={120} className="text-white hidden sm:block" />
-              </motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="mb-6"
+                >
+                  <DoubleHeart size={80} className="text-white sm:hidden" />
+                  <DoubleHeart size={120} className="text-white hidden sm:block" />
+                </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="font-handwritten text-3xl sm:text-5xl md:text-6xl text-white mb-4"
-                style={{ textShadow: "0 2px 20px rgba(0,0,0,0.2)" }}
-              >
-                I love you, my dear
-              </motion.h1>
+                <h1
+                  className="font-handwritten text-3xl sm:text-5xl md:text-6xl text-white mb-4"
+                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.2)" }}
+                >
+                  I love you, my dear
+                </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="font-handwritten text-2xl sm:text-3xl text-white/90 mb-8"
-              >
-                See you on the 14th
-              </motion.p>
+                <p className="font-handwritten text-2xl sm:text-3xl text-white/90 mb-8">
+                  See you on the 14th
+                </p>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="flex justify-center items-center gap-4"
-              >
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <motion.div
-                    key={i}
-                    animate={{
-                      y: [0, -10, 0],
-                      scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      delay: i * 0.2,
-                      repeat: Infinity,
-                    }}
-                  >
-                    {i % 2 === 0 ? (
-                      <HeartIcon size={i === 2 ? 32 : 24} className="text-white/80" />
-                    ) : (
-                      <SparkleHeart size={28} className="text-[#d4af37]" />
-                    )}
-                  </motion.div>
-                ))}
-              </motion.div>
+                <div className="flex justify-center items-center gap-4">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        y: [0, -10, 0],
+                        scale: [1, 1.2, 1],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        delay: i * 0.2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      {i % 2 === 0 ? (
+                        <HeartIcon size={i === 2 ? 32 : 24} className="text-white/80" />
+                      ) : (
+                        <SparkleHeart size={28} className="text-[#d4af37]" />
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );
