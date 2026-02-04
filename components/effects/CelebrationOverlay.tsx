@@ -95,84 +95,83 @@ export default function CelebrationOverlay({
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-              <motion.div
-                className="mb-4 sm:mb-6 flex justify-center"
-                animate={{
-                  scale: [1, 1.15, 1],
-                  rotate: [0, 5, -5, 0],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              >
-                <DoubleHeart size={64} className="text-white/90 sm:hidden" />
-                <DoubleHeart
-                  size={96}
-                  className="text-white/90 hidden sm:block"
-                />
-              </motion.div>
-
-              <h1
-                className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-3 sm:mb-4 px-2"
-                style={{ textShadow: "0 2px 20px rgba(0,0,0,0.2)" }}
-              >
-                {celebrationMessage.title}
-              </h1>
-
-              <p
-                className="font-handwritten text-2xl sm:text-3xl md:text-4xl text-white/90 mb-4 sm:mb-6"
-              >
-                {celebrationMessage.subtitle}
-              </p>
-
-              <div className="mb-6 sm:mb-8">
-                <div
-                  className="inline-block rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-4 border-white/20"
-                  style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}
-                >
-                  <img
-                    src={CELEBRATION_GIF}
-                    alt="Celebrating cat"
-                    className="w-36 h-36 sm:w-48 sm:h-48 object-cover"
-                  />
-                </div>
-              </div>
-
-              <button
-                onClick={() => goToView("letter")}
-                className="px-8 py-4 bg-white text-[#dc143c] font-body font-semibold text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 mx-auto"
-              >
-                Read my letter to you
-                <HeartIcon size={20} className="text-[#dc143c]" />
-              </button>
-
-              <div className="flex justify-center items-center gap-3 sm:gap-5 mt-6 sm:mt-8">
-                {[0, 1, 2, 3, 4].map((i) => (
+                <div className="mb-4 sm:mb-6 flex justify-center h-16 sm:h-24 items-center">
                   <motion.div
-                    key={i}
                     animate={{
-                      y: [0, -8, 0],
-                      scale: [1, 1.1, 1],
+                      scale: [1, 1.15, 1],
+                      rotate: [0, 5, -5, 0],
                     }}
                     transition={{
-                      duration: 1.2,
-                      delay: i * 0.15,
+                      duration: 1.5,
                       repeat: Infinity,
+                      repeatDelay: 0.5,
                     }}
                   >
-                    {i % 2 === 0 ? (
-                      <HeartIcon
-                        size={i === 2 ? 28 : 20}
-                        className="text-white/80"
-                      />
-                    ) : (
-                      <SparkleHeart size={24} className="text-[#d4af37]" />
-                    )}
+                    <DoubleHeart size={64} className="text-white/90 sm:hidden" />
+                    <DoubleHeart
+                      size={96}
+                      className="text-white/90 hidden sm:block"
+                    />
                   </motion.div>
-                ))}
-              </div>
+                </div>
+
+                <h1
+                  className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-3 sm:mb-4 px-2"
+                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.2)" }}
+                >
+                  {celebrationMessage.title}
+                </h1>
+
+                <p className="font-handwritten text-2xl sm:text-3xl md:text-4xl text-white/90 mb-4 sm:mb-6">
+                  {celebrationMessage.subtitle}
+                </p>
+
+                <div className="mb-6 sm:mb-8">
+                  <div
+                    className="inline-block rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-4 border-white/20"
+                    style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}
+                  >
+                    <img
+                      src={CELEBRATION_GIF}
+                      alt="Celebrating cat"
+                      className="w-36 h-36 sm:w-48 sm:h-48 object-cover"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => goToView("letter")}
+                  className="px-8 py-4 bg-white text-[#dc143c] font-body font-semibold text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 mx-auto"
+                >
+                  Read my letter to you
+                  <HeartIcon size={20} className="text-[#dc143c]" />
+                </button>
+
+                <div className="flex justify-center items-center gap-3 sm:gap-5 mt-6 sm:mt-8">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        y: [0, -8, 0],
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{
+                        duration: 1.2,
+                        delay: i * 0.15,
+                        repeat: Infinity,
+                      }}
+                    >
+                      {i % 2 === 0 ? (
+                        <HeartIcon
+                          size={i === 2 ? 28 : 20}
+                          className="text-white/80"
+                        />
+                      ) : (
+                        <SparkleHeart size={24} className="text-[#d4af37]" />
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             )}
 
@@ -299,7 +298,10 @@ export default function CelebrationOverlay({
                   className="mb-6"
                 >
                   <DoubleHeart size={80} className="text-white sm:hidden" />
-                  <DoubleHeart size={120} className="text-white hidden sm:block" />
+                  <DoubleHeart
+                    size={120}
+                    className="text-white hidden sm:block"
+                  />
                 </motion.div>
 
                 <h1
@@ -328,7 +330,10 @@ export default function CelebrationOverlay({
                       }}
                     >
                       {i % 2 === 0 ? (
-                        <HeartIcon size={i === 2 ? 32 : 24} className="text-white/80" />
+                        <HeartIcon
+                          size={i === 2 ? 32 : 24}
+                          className="text-white/80"
+                        />
                       ) : (
                         <SparkleHeart size={28} className="text-[#d4af37]" />
                       )}
