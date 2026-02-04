@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useProposalState } from "@/hooks/useProposalState";
 import { useAudioContext } from "@/components/effects/AudioProvider";
@@ -10,12 +8,14 @@ import YesButton from "./YesButton";
 import NoButton from "./NoButton";
 import PersuasionText from "./PersuasionText";
 import MoodGif from "./MoodGif";
+import Confetti from "@/components/effects/Confetti";
+import CelebrationOverlay from "@/components/effects/CelebrationOverlay";
 import MediaGallery from "@/components/photos/MediaGallery";
 import HeartIcon, { DoubleHeart } from "@/components/icons/HeartIcon";
 
 export default function ProposalCard() {
-  const router = useRouter();
   const {
+    noClickCount,
     isAccepted,
     currentMessage,
     currentGif,
@@ -35,11 +35,14 @@ export default function ProposalCard() {
     playCelebrationMusic();
   };
 
-  useEffect(() => {
-    if (isAccepted) {
-      router.push("/celebration");
-    }
-  }, [isAccepted, router]);
+  if (isAccepted) {
+    return (
+      <>
+        <Confetti isActive />
+        <CelebrationOverlay isVisible />
+      </>
+    );
+  }
 
   return (
     <>
