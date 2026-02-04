@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { domToPng } from "modern-screenshot";
 import {
   getCelebrationMessage,
@@ -95,8 +95,15 @@ export default function CelebrationOverlay({
           initial="hidden"
           animate="visible"
         >
-          {currentView === "celebration" && (
-            <>
+          <AnimatePresence mode="wait">
+            {currentView === "celebration" && (
+              <motion.div
+                key="celebration"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
               <motion.div
                 className="mb-4 sm:mb-6 flex justify-center"
                 variants={staggerItemVariants}
@@ -185,11 +192,17 @@ export default function CelebrationOverlay({
                   </motion.div>
                 ))}
               </motion.div>
-            </>
-          )}
+              </motion.div>
+            )}
 
-          {currentView === "letter" && (
-            <>
+            {currentView === "letter" && (
+              <motion.div
+                key="letter"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -259,11 +272,18 @@ export default function CelebrationOverlay({
                   </motion.div>
                 )}
               </motion.div>
-            </>
-          )}
+              </motion.div>
+            )}
 
-          {currentView === "todo" && (
-            <div className="flex flex-col items-center">
+            {currentView === "todo" && (
+              <motion.div
+                key="todo"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center"
+              >
               <ValentineTodo />
 
               <motion.div
@@ -286,15 +306,18 @@ export default function CelebrationOverlay({
                   Re-read letter
                 </button>
               </motion.div>
-            </div>
-          )}
+              </motion.div>
+            )}
 
-          {currentView === "finale" && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center text-center px-4"
-            >
+            {currentView === "finale" && (
+              <motion.div
+                key="finale"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center text-center px-4"
+              >
               <motion.div
                 animate={{
                   scale: [1, 1.1, 1],
@@ -356,8 +379,9 @@ export default function CelebrationOverlay({
                   </motion.div>
                 ))}
               </motion.div>
-            </motion.div>
-          )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
     </motion.div>
