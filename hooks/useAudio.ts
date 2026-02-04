@@ -53,16 +53,10 @@ export function useAudio(): UseAudioReturn {
   }, [isBackgroundPlaying]);
 
   const playCelebrationMusic = useCallback(() => {
-    if (backgroundAudioRef.current && isBackgroundPlaying) {
-      const fadeOut = setInterval(() => {
-        if (backgroundAudioRef.current && backgroundAudioRef.current.volume > 0.05) {
-          backgroundAudioRef.current.volume -= 0.05;
-        } else {
-          backgroundAudioRef.current?.pause();
-          setIsBackgroundPlaying(false);
-          clearInterval(fadeOut);
-        }
-      }, 100);
+    if (backgroundAudioRef.current) {
+      backgroundAudioRef.current.pause();
+      backgroundAudioRef.current.currentTime = 0;
+      setIsBackgroundPlaying(false);
     }
 
     if (celebrationAudioRef.current) {
@@ -76,7 +70,7 @@ export function useAudio(): UseAudioReturn {
           console.log("Celebration audio prevented:", err);
         });
     }
-  }, [isBackgroundPlaying, isMuted]);
+  }, [isMuted]);
 
   const stopAllMusic = useCallback(() => {
     backgroundAudioRef.current?.pause();

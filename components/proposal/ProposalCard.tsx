@@ -35,11 +35,17 @@ export default function ProposalCard() {
     playCelebrationMusic();
   };
 
+  if (isAccepted) {
+    return (
+      <>
+        <Confetti isActive />
+        <CelebrationOverlay isVisible />
+      </>
+    );
+  }
+
   return (
     <>
-      <Confetti isActive={isAccepted} />
-      <CelebrationOverlay isVisible={isAccepted} />
-
       <MediaGallery />
 
       <div className="relative flex flex-col items-center w-full px-4 sm:px-6">
